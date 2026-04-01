@@ -1,0 +1,746 @@
+:root{
+    /* フォントファミリーの定義 */
+    --ff-main: "Klee One", sans-serif; /* メインの明朝体 */
+    --ff-eng: "Lora", serif; /* 補足用のゴシック体 */
+    
+    /* メインフォントサイズを定義 */ /* clamp(最小, 可変, 最大) */
+    --fz-logo: clamp(48px, 10vw, 96px);
+    --fz-40: clamp(32px, 4.2vw, 40px);
+    --fz-36: clamp(24px, 3.75vw, 36px);
+    --fz-32: clamp(20px, 3.3vw, 32px);
+    --fz-24: clamp(20px, 2.5vw, 24px);
+    --fz-20: clamp(16px, 2.1vw, 20px);
+    --fz-16: clamp(14px, 1.7vw, 16px);
+    
+    /* 行間 */
+    --line-height-base: 2.0;    /* 本文・ゆったり読める */
+    --line-height-tight: 1.4;   /* 見出し・締まって見える */
+    /* 字間 */
+    --letter-spacing-base: 0.12em;  /* 本文・上品な余裕感 */
+    --letter-spacing-tight: 0.06em; /* 見出し */
+    --letter-spacing-wide: 0.2em;   /* ロゴや大見出し */
+
+    /* 色 */
+    --color-main: #E5E7DA;
+    --color-accent: #88915C;
+    --color-right:#F8F8F8;
+    --color-txt:#555A39;
+    --cta-gradient: linear-gradient(180deg, #88915C 0%, #555A39 100%);
+    --box-gradient: radial-gradient(circle, #88915C 10%, #555A39 70%);
+}
+.eng{
+    font-family: var(--ff-eng);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: var(--letter-spacing-base);
+    line-height: var(--line-height-tight);
+}
+/*全体*/
+body{
+    background-color: var(--color-main);
+    font-family: var(--ff-main);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    color: var(--color-txt);
+    font-size: var(--fz-20);
+    line-height: var(--line-height-base);
+    letter-spacing: var(--letter-spacing-base);
+}
+/*CTA*/
+.cta{
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+}
+.cta-microcopy{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+.cta-txt{
+    font-size: var(--fz-20);
+    font-weight: bold;
+    letter-spacing: var(--letter-spacing-wide);
+    padding: 0 0 10px;
+    margin: 0;
+}
+.cta-microcopy::before,
+.cta-microcopy::after {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 1px;
+    background-color: currentColor;
+    margin: 0 20px;
+}
+.cta-microcopy::before {
+    transform: rotate(45deg);
+}
+.cta-microcopy::after {
+    transform: rotate(135deg);
+}
+.right-cta{
+    color: var(--color-accent);
+}
+.dark-cta{
+    color: var(--color-main);
+}
+.cta-btn{
+    width: 100%;
+    height: clamp(50px,8vw, 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cta-gradient);
+    color: var(--color-main);
+    border: 1px solid var(--color-main);
+    transition: 0.3s;
+}
+.cta-btntxt{
+    font-size: var(--fz-24);
+    font-weight: bold;
+    letter-spacing: var(--letter-spacing-wide);
+}
+.cta-btn:hover {
+    background: var(--color-main);
+    color: var(--color-txt);
+}
+/*セクションタイトル*/
+.section-title{
+    display: flex;
+    align-items: baseline;
+    text-align: center;
+    flex-wrap: wrap;
+    font-size: var(--fz-32);
+    color: var(--color-txt);
+    margin: 0 auto clamp(50px,8vw,100px);
+}
+.title-right{
+    color: var(--color-txt);
+    flex-direction: column;
+    align-items: center;
+}
+.title-dark{
+    color: var(--color-main);
+    flex-direction: row;
+}
+.section-title p{
+    color: var(--color-accent);
+    font-size: var(--fz-24);
+}
+@media screen and (max-width: 768px) {
+    .cta-btn{
+        letter-spacing: var(--letter-spacing-tight);
+    }
+    .right-cta{
+        margin: 0 auto;
+    }
+    .cta-btntxt{
+        letter-spacing: var(--letter-spacing-base);
+    }
+}
+/*fv*/
+.fv{
+    width: 100%;
+    min-height: 900px;
+    /* 背景画像として設定 */
+    background-image: url('../images/fv-1.png');
+    background-size: cover;    /* 画像を隙間なく敷き詰める */
+    background-position: center; /* 画像の真ん中を基準にする */
+    background-repeat: no-repeat;
+    
+    /* 上下の余白をしっかり取る（これがセクションの高さになる） */
+    padding: 100px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.fv-inner{
+    width: 90%;
+    max-width: 960px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: clamp(50px, 8vw, 100px);
+}
+.fv-main {
+    position: relative;
+    width: 50%;
+}
+picture{
+    display: block;
+    width: 100%;
+}
+.fv-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-right: auto;
+}
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    z-index: 1;
+    line-height: 1;
+}
+.logo span,.logo h1{
+    font-weight: bold;
+    color: var(--color-accent);
+    text-shadow: 
+    3px 3px 0 var(--color-right),
+    -3px 3px 0 var(--color-right),
+    3px -3px 0 var(--color-right),
+    -3px -3px 0 var(--color-right);
+    line-height: var(--line-height-tight);
+}
+.logo span{
+    font-size: var(--fz-24);
+    letter-spacing: var(--letter-spacing-tight);
+}
+.logo h1{
+    font-size: var(--fz-logo);
+    letter-spacing: var(--letter-spacing-base);
+}
+.fv-body {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-txt);
+    text-align: center;
+}
+.fv-body p,.fv-subtitle p{
+    font-size: var(--fz-24);
+}
+.fv-body h2{
+    font-size: var(--fz-40);
+}
+.fv-subtitle{
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+.fv-subtitle span{
+    font-size: var(--fz-32);
+    margin-bottom: clamp(30px,4vw,40px);
+}
+.fv-txtbox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: var(--fz-20);
+    padding: 30px 0;
+    margin: clamp(30px,4vw,45px);
+    background-color: var(--color-right);
+}
+
+@media screen and (max-width: 768px) {
+    .fv{
+        padding: 50px 0;
+    }
+    .fv-inner {
+        flex-direction: column;
+        gap: 0;
+    }
+    .fv-main {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .logo {
+        position: static;
+        transform: none;
+        writing-mode: horizontal-tb;
+        padding: 20px;
+        text-align: center;
+        order: -1;
+    }
+    .fv-body {
+        width: 100%;
+        padding: 0;
+    }
+    .fv-img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin: 50px 0;
+    }
+}
+/*problem*/
+.problem{
+    width: 100%;
+    min-height: 700px;
+    /* 背景画像として設定 */
+    background-image: url('../images/problem-1.png');
+    background-size: cover;    /* 画像を隙間なく敷き詰める */
+    background-position: center; /* 画像の真ん中を基準にする */
+    background-repeat: no-repeat;
+    
+    /* 上下の余白をしっかり取る（これがセクションの高さになる） */
+    padding: clamp(50px, 8vw, 100px) 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.problem-inner{
+    width: 90%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: flex-end;
+}
+.problem-top-box{
+    width: 80%;
+    max-width: 550px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 100px;
+}
+.problem-bottom-box{
+    width: 70%;
+    max-width: 550px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-right: 15%;
+    gap: 100px;
+}
+.problem-box{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: var(--box-gradient);
+    color: var(--color-main);
+    font-size: var(--fz-20);
+}
+.box-big{
+    width: clamp(160px,26vw,250px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    height: auto;
+}
+.box-small{
+    width: clamp(130px,21vw,200px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    height: auto;
+}
+@media screen and (max-width: 768px) {
+    .problem{background-image: url('../images/problem-m.png');}
+    .problem-top-box{
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+    }
+    .problem-top-box .box-small{
+        align-self: flex-start;
+    }
+    .problem-bottom-box{
+        flex-direction: column;
+        gap: 10px;
+        margin: 0;
+        align-items: flex-end;
+    }
+    .problem-bottom-box .box-big{
+        align-self: flex-start;
+    }
+}
+/*about*/
+.about{
+    background-color: var(--color-main);
+    padding-bottom: clamp(50px, 8vw, 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.about-inner{
+    width: 90%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.triangle-background{
+    width: clamp(35px, 8vw, 80px);
+    padding-bottom: clamp(20px,4vw,45px);
+    height: auto;
+    color: var(--color-txt); 
+    border: none;
+    display: block;
+    margin: 0 auto;
+}
+.about-box{
+    width: 100%;
+    padding: clamp(30px,5vw,50px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: var(--color-main);
+    background-color: var(--color-accent);
+    gap: clamp(20px,3vw,30px);
+}
+.about-txt{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--fz-24);
+}
+.about-txt span{
+    display: inline-block;
+}
+.about-maintxt{
+    font-size: var(--fz-32);
+}
+/*concept*/
+.concept{
+    background-color: var(--color-accent);
+    padding: clamp(50px, 8vw, 100px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.concept-inner{
+    width: 90%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.concept-body{
+    width: 100%;
+    display: flex;
+    margin-bottom: clamp(50px,8vw,100px);
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.concept-box{
+    width: 100%;
+    max-width: 300px;
+    min-height: stretch;
+    background-color: var(--color-main);
+    padding: clamp(30px,5vw,50px) 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(20px,5vw,30px);
+    color: var(--color-txt);
+}
+.concept-box img{
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+}
+.concept-box p{
+    text-align: start;
+    font-size: var(--fz-20);
+}
+.box-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box-title span{
+    font-size: var(--fz-20);
+    color: var(--color-accent);
+}
+.box-title h4{
+    font-size: var(--fz-24);
+}
+@media screen and (max-width: 768px) {
+    .concept-body{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .concept-box{
+        max-width: 768px;
+    }
+}
+/*flow*/
+.flow{
+    background-color: var(--color-main);
+    padding: clamp(50px, 8vw, 100px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flow-inner{
+    width: 90%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flow-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px,3vw,30px);
+}
+.flow-box h4{
+    width: 100%;
+    text-align: center;
+    background-color: var(--color-accent);
+    padding: 5px;
+    color: var(--color-right);
+    font-weight: bold;
+    font-size: var(--fz-24);
+}
+.flow-box p{
+    width: 100%;
+    text-align: center;
+    background-color: var(--color-right);
+    border: 1px solid var(--color-accent);
+    padding: 10px;
+    font-size: var(--fz-20);
+}
+.triangle-icon {
+    width: clamp(25px, 4vw, 50px);
+    height: auto; 
+    color: var(--color-accent); 
+    border: none; 
+    display: block;
+    margin: 0 auto;
+}
+/*price*/
+.price{
+    background-color: var(--color-accent);
+    padding: clamp(50px, 8vw, 100px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.price-inner{
+    width: 90%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.price-body{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: clamp(20px,4vw,50px);
+}
+.price-box{
+    width: 50%;
+    padding:clamp(30px,4vw,50px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-main);
+}
+.price-box p{
+    font-size: var(--fz-16);
+    margin: 50px auto;
+}
+.price-box img{
+    width: clamp(20px,4vw,50px);
+    height: auto;
+}
+.price-inner p{
+    font-size: var(--fz-16);
+    margin: clamp(30px,4vw,50px) 0;
+    color: var(--color-main);
+}
+.price-label {
+    position: relative;
+    top: -20%;
+    left: -30%;
+    transform: rotate(-10deg);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;/* 傾けた時に文字がガタガタに見えるのを防ぐ */
+    display: inline-flex;/* 傾けた時に文字がガタガタに見えるのを防ぐ */
+    transform-origin: center center;/* 起点を中心に*/
+    flex-direction: column;
+    align-items: center; 
+    color: var(--color-txt);
+}
+.label-content {
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px solid currentColor; /* 下線 */
+    padding-bottom: 2px;
+}
+.label-content p {
+    font-size: var(--fz-20);
+    color: var(--color-txt);
+    font-weight: bold;
+    margin: 0;
+}
+.label-arrow {
+    width: 15px;      /* ツノの横幅 */
+    height: auto;
+    background-color: var(--color-main);
+    color: var(--color-accent);
+    margin-top: -1px; /* 下線とピッタリくっつけるための微調整 */
+}
+.price-maintxt h4{
+    text-align: center;
+    font-size: var(--fz-32);
+}
+.price-maintxt span{
+    font-size: var(--fz-24);
+    text-align: center;
+}
+.price-price{
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+.price-price p{
+    font-size: var(--fz-24);
+    color: var(--color-txt);
+}
+.price-price span{
+    font-size: var(--fz-40);
+}
+@media screen and (max-width: 768px) {
+    .price-body{
+        flex-direction: column;
+    }
+    .price-box{
+        width: 100%;
+    }
+}
+/*info*/
+.info{
+    background-color: var(--color-main);
+    padding: clamp(50px, 8vw, 100px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.info-inner{
+    width: 90%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.info-body{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.info-map{
+    width: 100%;
+    max-width: 430px;
+    height: clamp(100px,15vw,270px);
+}
+.info-map iframe{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.info-txtbox{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: var(--fz-24);
+    text-align: center;
+}
+@media screen and (max-width: 768px) {
+    .info-body{
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+    }
+    .info-txtbox{
+        width: 100%;
+    }
+}
+/*last*/
+.last{
+    width: 100%;
+    min-height: 645px;
+    /* 背景画像として設定 */
+    background-image: url('../images/last-1.png');
+    background-size: cover;    /* 画像を隙間なく敷き詰める */
+    background-position: center; /* 画像の真ん中を基準にする */
+    background-repeat: no-repeat;
+    
+    /* 上下の余白をしっかり取る（これがセクションの高さになる） */
+    padding: clamp(50px, 8vw, 100px) 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.last-inner{
+    width: 90%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: flex-end;
+}
+.last-main-txt ,.last-txtbox ,.last-message{
+    text-align: end;
+    color: var(--color-txt);
+    font-weight: bold;
+    padding-bottom: 20px;
+    text-shadow: 
+        1px 1px 0 var(--color-right),
+        -1px 1px 0 var(--color-right),
+        1px -1px 0 var(--color-right),
+        -1px -1px 0 var(--color-right);
+}
+.last-main-txt{font-size: var(--fz-36);}
+.last-txtbox{font-size: var(--fz-20);}
+.last-message{font-size: var(--fz-24);}
+.last-txtbox span,
+.last-message span{
+    display: block;
+}
+@media screen and (max-width: 768px) {
+    .last{
+        min-height: 785px;
+        background-image: url('../images/last-m.png');
+    }
+    .last-inner{
+        align-items: flex-start;
+    }
+    .last-main-txt ,.last-txtbox {
+        text-align: start;
+    }
+    .last-message{
+        margin: 180px 0 50px auto;
+    }
+}
